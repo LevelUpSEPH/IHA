@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
     [SerializeField] private float _sensitivity;
     private Vector2 rotation = Vector2.zero;
     [SerializeField] private float _yRotationLimit = 90f  ;
 
+    private Vector3 targetPos;
     // Update is called once per frame
     void Update()
     {
@@ -22,5 +18,15 @@ public class CameraController : MonoBehaviour
         var xQuat = Quaternion.AngleAxis(rotation.x, Vector3.up);
         var yQuat = Quaternion.AngleAxis(rotation.y, Vector3.left);
         transform.localRotation = xQuat * yQuat;
+
+       /* Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity)) {
+            Debug.Log(hit.transform.name);
+            Debug.Log("hit");
+            targetPos = hit.transform.position;
+        }
+
+        transform.LookAt(targetPos);*/
     }
 }
